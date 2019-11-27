@@ -1,0 +1,28 @@
+{
+  "name": "friendly-mode",
+  "author": "IRLININ",
+  "version": "0.9.0",
+  "git": {
+    "enabled": true,
+    "repo": "https://github.com/Bluscream/ow-friendly-mode.git"
+  },
+  "compiler": {
+    "bin": "./OWScript",
+    "input": "src/index.owpy",
+    "output": "dist/index.ows",
+    "options": {
+      "generateAdapapCredit": true,
+      "generateVersionRule": true,
+      "generateCreditRule": true
+    }
+  },
+  "cli": {
+    "git": {
+      "enabled": true,
+      "useHTTPS": false
+    },
+    "locations": {
+      "modules": "src/modules"
+    }
+  }
+}
