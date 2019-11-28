@@ -1,5 +1,0 @@
-Rule "My First Rule"
-  Event
-    On Global
-  Actions
-    Big Msg(Everyone, `Hello`)
