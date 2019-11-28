@@ -1,0 +1,12 @@
+{
+    "name": " Friendly Mode by IRLININ [1P/3P] [GER]",
+    "description": "● FRIENDLY MODE v.1.252 [Settings For \"Hanamura\" Map] ● | Hi :) \"IRLININ\" is the original creator of THIS mode. | Join my Discord server: https://discord.gg/DH4pVG5 (All controls, workshop codes and other information about my modes in this server) | Have fun ♥ :)",
+    "version": "1.252",
+    "maps": ["Hanamura"],
+    "authors": ["IRLININ"],
+    "urls": {
+        "support": "https://discord.gg/DH4pVG5",
+        "git": "https://github.com/Bluscream/ow-friendly-mode"
+    },
+    "workshop-code": "QCE8K"
+}

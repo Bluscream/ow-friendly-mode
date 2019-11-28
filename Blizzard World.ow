@@ -303,6 +303,161 @@ disabled rule("|----------------------------------------------------------------
 	}
 }
 
+rule("| EFFECTS |")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Good Aura, White, Vector(-83.608, 2.194, 100.341), 1, Visible To);
+		Create Effect(All Players(All Teams), Good Aura, White, Vector(7.141, -2.547, -24.617), 1, Visible To);
+		Create Effect(All Players(All Teams), Good Aura, White, Vector(2.966, 3.444, 64.509), 1, Visible To);
+		Create Effect(All Players(All Teams), Good Aura, White, Vector(-118.891, 1.190, 99.537), 1, Visible To);
+	}
+}
+
+rule("| FROM SPAWN |")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Or(Compare(Distance Between(Event Player, Vector(-83.608, 2.194, 100.341)), <=, 1.800), Compare(Distance Between(Event Player,
+			Vector(7.141, -2.547, -24.617)), <=, 1.800)) == True;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Vector(3.129, 2, 79.301));
+		Set Facing(Event Player, Vector Towards(Vector(3.129, 3.444, 79.301), Vector(3.121, 3.444, 78.419)), To World);
+		Play Effect(All Players(All Teams), Good Pickup Effect, White, Event Player, 1);
+		Play Effect(All Players(All Teams), Ring Explosion, White, Event Player, 4);
+	}
+}
+
+rule("| TO LAST POINT |")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(2.966, 3.444, 64.509)) <= 1.800;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Vector(-122.073, 0, 110.535));
+		Play Effect(All Players(All Teams), Good Pickup Effect, White, Event Player, 1);
+		Play Effect(All Players(All Teams), Ring Explosion, White, Event Player, 4);
+	}
+}
+
+rule("| FROM LAST POINT |")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(-118.891, 1.190, 99.537)) <= 1.800;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Vector(3.129, 2, 79.301));
+		Set Facing(Event Player, Vector Towards(Vector(3.129, 3.444, 79.301), Vector(3.121, 3.444, 78.419)), To World);
+		Play Effect(All Players(All Teams), Good Pickup Effect, White, Event Player, 1);
+		Play Effect(All Players(All Teams), Ring Explosion, White, Event Player, 4);
+	}
+}
+
+disabled rule("|____________________ [SOUNDS] ____________________|")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Slot 0;
+	}
+}
+
+rule("| FROM SPAWN |")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Is True For Any(All Players(All Teams), Or(Compare(Distance Between(Current Array Element, Vector(-83.608, 2.194, 100.341)), <=,
+			1.800), Compare(Distance Between(Current Array Element, Vector(7.141, -2.547, -24.617)), <=, 1.800))) == True;
+	}
+
+	actions
+	{
+		Wait(0.060, Ignore Condition);
+		Play Effect(All Players(All Teams), Ring Explosion Sound, White, Vector(3.129, 3.444, 79.301), 80);
+	}
+}
+
+rule("| TO LAST POINT |")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Is True For Any(All Players(All Teams), Compare(Distance Between(Current Array Element, Vector(2.966, 3.444, 64.509)), <=, 1.800))
+			== True;
+	}
+
+	actions
+	{
+		Wait(0.060, Ignore Condition);
+		Play Effect(All Players(All Teams), Ring Explosion Sound, White, Vector(-122.073, 1.294, 110.535), 80);
+	}
+}
+
+rule("| FROM LAST POINT |")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Is True For Any(All Players(All Teams), Compare(Distance Between(Current Array Element, Vector(-118.891, 1.191, 99.537)), <=,
+			1.800)) == True;
+	}
+
+	actions
+	{
+		Wait(0.060, Ignore Condition);
+		Play Effect(All Players(All Teams), Ring Explosion Sound, White, Vector(3.129, 3.444, 79.301), 80);
+	}
+}
+
 disabled rule("|--------------------------------------------------------------------------------| ENTER PLACES")
 {
 	event
@@ -313,6 +468,214 @@ disabled rule("|----------------------------------------------------------------
 	}
 }
 
+rule("| EFFECTS |")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Ring, Blue, Vector(-57.348, 2.190, 140.761), 0.800, Visible To);
+		Create Effect(All Players(All Teams), Ring, Red, Vector(-54.793, 1.712, 141.541), 0.800, Visible To);
+		Create In-World Text(All Players(All Teams), String("Inside", Null, Null, Null), Vector(-57.348, 2.190, 140.761), 1.200,
+			Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Create In-World Text(All Players(All Teams), String("Outside", Null, Null, Null), Vector(-54.793, 1.712, 141.541), 1.200,
+			Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Blue, Vector(-12.527, -2.653, -30.934), 0.800, Visible To);
+		Create Effect(All Players(All Teams), Ring, Red, Vector(-12.498, -2.556, -34.193), 0.800, Visible To);
+		Create In-World Text(All Players(All Teams), String("Inside", Null, Null, Null), Vector(-12.527, -2.653, -30.934), 1.200,
+			Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Create In-World Text(All Players(All Teams), String("Outside", Null, Null, Null), Vector(-12.498, -2.556, -34.193), 1.200,
+			Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Create Effect(All Players(Team 2), Ring, Blue, Vector(-80.156, 2.232, 97.298), 0.800, Visible To);
+		Create Effect(All Players(Team 2), Ring, Red, Vector(-83.774, 2.194, 96.151), 0.800, Visible To);
+		Create In-World Text(All Players(Team 2), String("Inside", Null, Null, Null), Vector(-80.156, 2.233, 97.298), 1.200,
+			Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Create In-World Text(All Players(Team 2), String("Outside", Null, Null, Null), Vector(-83.774, 2.194, 96.151), 1.200,
+			Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Create Effect(All Players(Team 1), Ring, Blue, Vector(3.042, -2.547, -19.364), 0.800, Visible To);
+		Create Effect(All Players(Team 1), Ring, Red, Vector(3.050, -2.547, -21.679), 0.800, Visible To);
+		Create In-World Text(All Players(Team 1), String("Inside", Null, Null, Null), Vector(3.042, -2.547, -19.364), 1.200,
+			Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Create In-World Text(All Players(Team 1), String("Outside", Null, Null, Null), Vector(3.050, -2.547, -21.679), 1.200,
+			Clip Against Surfaces, Visible To and String, White, Default Visibility);
+	}
+}
+
+rule("| ENTER BUILIDING 1 |")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(-57.348, 2.190, 140.761)) <= 1.550;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Vector(-53.065, -0.200, 142.039));
+		Small Message(Event Player, String("Inside", Null, Null, Null));
+	}
+}
+
+rule("| EXIT BUILIDING 1 |")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(-54.793, 1.200, 141.541)) <= 1.550;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Vector(-59.237, 0.600, 140.196));
+		Small Message(Event Player, String("Outside", Null, Null, Null));
+	}
+}
+
+rule("| ENTER OUT OF MAP GATES |")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(-12.527, -2.653, -30.934)) <= 1.550;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Vector(-12.498, -4.100, -35.825));
+		Small Message(Event Player, String("Inside", Null, Null, Null));
+	}
+}
+
+rule("| EXIT OUT OF MAP GATES |")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(-12.498, -2.556, -34.193)) <= 1.550;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Vector(-12.581, -4.000, -29.561));
+		Small Message(Event Player, String("Outside", Null, Null, Null));
+	}
+}
+
+rule("| ENTER TEAM 1 SPAWN |")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(-80.156, 2.232, 97.298)) <= 1.550;
+		Team Of(Event Player) == Team 2;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Vector(-84.938, 0.800, 95.778));
+		Small Message(Event Player, String("Inside", Null, Null, Null));
+	}
+}
+
+rule("| EXIT TEAM 1 SPAWN |")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(-83.774, 2.194, 96.151)) <= 1.550;
+		Team Of(Event Player) == Team 2;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Vector(-78.062, 0.800, 97.734));
+		Small Message(Event Player, String("Outside", Null, Null, Null));
+	}
+}
+
+rule("| ENTER TEAM 2 SPAWN |")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(3.042, -2.547, -19.364)) <= 1.550;
+		Team Of(Event Player) == Team 1;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Vector(3.035, -4.000, -23.567));
+		Small Message(Event Player, String("Inside", Null, Null, Null));
+	}
+}
+
+rule("| EXIT TEAM 2 SPAWN |")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(3.050, -2.547, -21.679)) <= 1.550;
+		Team Of(Event Player) == Team 1;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Vector(3.055, -4.000, -17.117));
+		Small Message(Event Player, String("Outside", Null, Null, Null));
+	}
+}
+
 disabled rule("|---------------------------------------------------------------------------------| DANCE FLOOR")
 {
 	event
@@ -320,6 +683,64 @@ disabled rule("|----------------------------------------------------------------
 		Ongoing - Each Player;
 		Team 1;
 		Slot 0;
+	}
+}
+
+rule("| EFFECTS | / G.VARS: A /")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Sparkles, Red, Vector(3.007, 6.500, 41.956), 6, Visible To);
+		Create Effect(All Players(All Teams), Sparkles, Purple, Vector(3.007, 4.500, 41.956), 6, Visible To);
+		Create Effect(All Players(All Teams), Sparkles, Green, Vector(3.007, 2.500, 41.956), 6, Visible To);
+		Create Effect(All Players(All Teams), Sparkles, Yellow, Vector(3.007, 0.500, 41.956), 6, Visible To);
+		Create Effect(All Players(All Teams), Ring, Purple, Vector(3.007, 0.500, 41.956), Global Variable(A),
+			Visible To Position and Radius);
+		Create Effect(All Players(All Teams), Light Shaft, Purple, Vector(3.007, -1.000, 41.956), Global Variable(A),
+			Visible To Position and Radius);
+	}
+}
+
+rule("| LOOP EFFECTS |")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Wait(0.365, Ignore Condition);
+		Play Effect(All Players(All Teams), Ring Explosion, Yellow, Vector(3.007, 0.600, 41.956), 11);
+		Wait(0.365, Ignore Condition);
+		Play Effect(All Players(All Teams), Ring Explosion, Green, Vector(3.007, 0.600, 41.956), 12);
+		Wait(0.365, Ignore Condition);
+		Play Effect(All Players(All Teams), Ring Explosion, Purple, Vector(3.007, 0.600, 41.956), 13);
+		Wait(0.365, Ignore Condition);
+		Play Effect(All Players(All Teams), Ring Explosion, Red, Vector(3.007, 0.600, 41.956), 14);
+		Loop;
+	}
+}
+
+rule("| CHASE G.VAR A | / G.VARS: A /")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Wait(3, Ignore Condition);
+		Chase Global Variable Over Time(A, 7, 3, Destination and Duration);
+		Wait(3, Ignore Condition);
+		Chase Global Variable Over Time(A, 3.500, 3, Destination and Duration);
+		Loop;
 	}
 }
 
@@ -552,6 +973,95 @@ disabled rule("|----------------------------------------------------------------
 	}
 }
 
+rule("| EFFECTS |")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Ring, Blue, Vector(3.137, 7.466, 84.281), 0.700, Visible To);
+		Create In-World Text(All Players(All Teams), String("Start", Null, Null, Null), Vector(3.137, 6.066, 84.281), 1.200,
+			Clip Against Surfaces, Visible To and String, White, Default Visibility);
+	}
+}
+
+rule("| START | / G.VARS: B,C,D /")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(3.137, 6.266, 84.281)) <= 0.675;
+		Is Button Held(Event Player, Interact) == True;
+		Global Variable(B) == 0;
+	}
+
+	actions
+	{
+		Play Effect(All Players(All Teams), Ring Explosion, Blue, Vector(3.137, 6.066, 84.281), 1.450);
+		Destroy Effect(Value In Array(Global Variable(C), 0));
+		Destroy Effect(Value In Array(Global Variable(C), 1));
+		Destroy Effect(Value In Array(Global Variable(C), 2));
+		Destroy Effect(Value In Array(Global Variable(C), 3));
+		Destroy In-World Text(Value In Array(Global Variable(C), 4));
+		Destroy In-World Text(Value In Array(Global Variable(C), 5));
+		Destroy In-World Text(Value In Array(Global Variable(C), 6));
+		Destroy In-World Text(Value In Array(Global Variable(C), 7));
+		Set Global Variable At Index(D, 0, Random Integer(1, 100));
+		Set Global Variable At Index(D, 1, Random Integer(1, 5));
+		Set Global Variable At Index(D, 2, Random Integer(1, 100));
+		Set Global Variable At Index(D, 3, Random Integer(1, 5));
+		Set Global Variable At Index(D, 4, Random Integer(1, 100));
+		Set Global Variable At Index(D, 5, Random Integer(1, 5));
+		Set Global Variable At Index(D, 6, Random Integer(1, 100));
+		Set Global Variable At Index(D, 7, Random Integer(1, 5));
+		Wait(0.005, Ignore Condition);
+		Set Global Variable(B, 1);
+		Wait(4.500, Ignore Condition);
+		Set Global Variable(B, 0);
+	}
+}
+
+disabled rule("|____________________ [SOUNDS] ____________________|")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Slot 0;
+	}
+}
+
+rule("/ G.VARS: B /")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Is True For Any(All Players(All Teams), Compare(Distance Between(Current Array Element, Vector(3.137, 6.266, 84.281)), <=, 0.675))
+			== True;
+		Is True For Any(Filtered Array(All Players(All Teams), Compare(Distance Between(Current Array Element, Vector(3.137, 6.266,
+			84.281)), <=, 0.675)), Is Button Held(Current Array Element, Interact)) == True;
+		Global Variable(B) == 0;
+	}
+
+	actions
+	{
+		Play Effect(All Players(All Teams), Ring Explosion Sound, White, Vector(3.137, 6.266, 84.281), 80);
+	}
+}
+
 disabled rule("|____________________ [DROPS] ____________________|")
 {
 	event
@@ -559,6 +1069,202 @@ disabled rule("|____________________ [DROPS] ____________________|")
 		Ongoing - Each Player;
 		Team 1;
 		Slot 0;
+	}
+}
+
+rule("| DROP 1 | / G.VARS: B,D,E,C,F /")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global Variable(B) == 1;
+	}
+
+	actions
+	{
+		Wait(1, Ignore Condition);
+		Skip If(Compare(Value In Array(Global Variable(D), 0), >, 2), 5);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Yellow, Vector(4.571, 7.465, 82.444), 1);
+		Play Effect(All Players(All Teams), Ring Explosion, Yellow, Vector(4.571, 7.466, 82.444), 3);
+		Play Effect(All Players(All Teams), Buff Impact Sound, Yellow, Vector(4.571, 7.466, 82.444), 40);
+		Set Global Variable At Index(E, 0, 500);
+		Create Effect(All Players(All Teams), Light Shaft, Yellow, Vector(4.571, 5.965, 82.444), 0.400, Visible To);
+		Skip If(Or(Compare(Value In Array(Global Variable(D), 0), <, 3), Compare(Value In Array(Global Variable(D), 0), >, 15)), 4);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Purple, Vector(4.571, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Explosion Sound, Purple, Vector(4.571, 7.466, 82.444), 40);
+		Set Global Variable At Index(E, 0, 150);
+		Create Effect(All Players(All Teams), Light Shaft, Purple, Vector(4.571, 5.965, 82.444), 0.400, Visible To);
+		Skip If(Or(Compare(Value In Array(Global Variable(D), 0), <, 16), Compare(Value In Array(Global Variable(D), 0), >, 44)), 4);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Blue, Vector(4.571, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Explosion Sound, Blue, Vector(4.571, 7.466, 82.444), 40);
+		Set Global Variable At Index(E, 0, 50);
+		Create Effect(All Players(All Teams), Light Shaft, Blue, Vector(4.571, 5.965, 82.444), 0.400, Visible To);
+		Skip If(Compare(Value In Array(Global Variable(D), 0), <, 45), 4);
+		Play Effect(All Players(All Teams), Good Pickup Effect, White, Vector(4.571, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Explosion Sound, White, Vector(4.571, 7.466, 82.444), 40);
+		Set Global Variable At Index(E, 0, 15);
+		Create Effect(All Players(All Teams), Light Shaft, White, Vector(4.571, 5.965, 82.444), 0.400, Visible To);
+		Set Global Variable At Index(C, 0, Last Created Entity);
+		Skip If(Compare(Value In Array(Global Variable(D), 1), ==, 1), 2);
+		Set Global Variable At Index(F, 0, Random Value In Array(All Heroes));
+		Create In-World Text(All Players(All Teams), Hero Icon String(Value In Array(Global Variable(F), 0)), Vector(4.571, 7.466, 82.444),
+			1.200, Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Skip If(Compare(Value In Array(Global Variable(D), 1), >, 1), 1);
+		Create In-World Text(All Players(All Teams), String("{0}: {1}", String("Credits", Null, Null, Null), Value In Array(
+			Global Variable(E), 0), Null), Vector(4.571, 7.466, 82.444), 1.200, Clip Against Surfaces, Visible To and String, White,
+			Default Visibility);
+		Set Global Variable At Index(C, 4, Last Text ID);
+	}
+}
+
+rule("| DROP 2 | / G.VARS: B,D,E,C,F /")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global Variable(B) == 1;
+	}
+
+	actions
+	{
+		Wait(1.750, Ignore Condition);
+		Skip If(Compare(Value In Array(Global Variable(D), 2), >, 2), 5);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Yellow, Vector(3.688, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Ring Explosion, Yellow, Vector(3.688, 7.466, 82.444), 3);
+		Play Effect(All Players(All Teams), Buff Impact Sound, Yellow, Vector(3.688, 7.466, 82.444), 40);
+		Set Global Variable At Index(E, 1, 500);
+		Create Effect(All Players(All Teams), Light Shaft, Yellow, Vector(3.688, 5.965, 82.444), 0.400, Visible To);
+		Skip If(Or(Compare(Value In Array(Global Variable(D), 2), <, 3), Compare(Value In Array(Global Variable(D), 2), >, 15)), 4);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Purple, Vector(3.688, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Explosion Sound, Purple, Vector(3.688, 7.466, 82.444), 40);
+		Set Global Variable At Index(E, 1, 150);
+		Create Effect(All Players(All Teams), Light Shaft, Purple, Vector(3.688, 5.965, 82.444), 0.400, Visible To);
+		Skip If(Or(Compare(Value In Array(Global Variable(D), 2), <, 16), Compare(Value In Array(Global Variable(D), 2), >, 44)), 4);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Blue, Vector(3.688, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Explosion Sound, Blue, Vector(3.688, 7.466, 82.444), 40);
+		Set Global Variable At Index(E, 1, 50);
+		Create Effect(All Players(All Teams), Light Shaft, Blue, Vector(3.688, 5.965, 82.444), 0.400, Visible To);
+		Skip If(Compare(Value In Array(Global Variable(D), 2), <, 45), 4);
+		Play Effect(All Players(All Teams), Good Pickup Effect, White, Vector(3.688, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Explosion Sound, White, Vector(3.688, 7.466, 82.444), 40);
+		Set Global Variable At Index(E, 1, 15);
+		Create Effect(All Players(All Teams), Light Shaft, White, Vector(3.688, 5.965, 82.444), 0.400, Visible To);
+		Set Global Variable At Index(C, 1, Last Created Entity);
+		Skip If(Compare(Value In Array(Global Variable(D), 3), ==, 1), 2);
+		Set Global Variable At Index(F, 1, Random Value In Array(All Heroes));
+		Create In-World Text(All Players(All Teams), Hero Icon String(Value In Array(Global Variable(F), 1)), Vector(3.688, 7.466, 82.444),
+			1.200, Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Skip If(Compare(Value In Array(Global Variable(D), 3), >, 1), 1);
+		Create In-World Text(All Players(All Teams), String("{0}: {1}", String("Credits", Null, Null, Null), Value In Array(
+			Global Variable(E), 1), Null), Vector(3.688, 7.466, 82.444), 1.200, Clip Against Surfaces, Visible To and String, White,
+			Default Visibility);
+		Set Global Variable At Index(C, 5, Last Text ID);
+	}
+}
+
+rule("| DROP 3 | / G.VARS: B,D,E,C,F /")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global Variable(B) == 1;
+	}
+
+	actions
+	{
+		Wait(2.500, Ignore Condition);
+		Skip If(Compare(Value In Array(Global Variable(D), 4), >, 2), 5);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Yellow, Vector(2.849, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Ring Explosion, Yellow, Vector(2.849, 7.466, 82.444), 3);
+		Play Effect(All Players(All Teams), Buff Impact Sound, Yellow, Vector(2.849, 7.466, 82.444), 40);
+		Set Global Variable At Index(E, 2, 500);
+		Create Effect(All Players(All Teams), Light Shaft, Yellow, Vector(2.849, 5.965, 82.444), 0.400, Visible To);
+		Skip If(Or(Compare(Value In Array(Global Variable(D), 4), <, 3), Compare(Value In Array(Global Variable(D), 4), >, 15)), 4);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Purple, Vector(2.849, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Explosion Sound, Purple, Vector(2.849, 7.465, 82.444), 40);
+		Set Global Variable At Index(E, 2, 150);
+		Create Effect(All Players(All Teams), Light Shaft, Purple, Vector(2.849, 5.965, 82.444), 0.400, Visible To);
+		Skip If(Or(Compare(Value In Array(Global Variable(D), 4), <, 16), Compare(Value In Array(Global Variable(D), 4), >, 44)), 4);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Blue, Vector(2.849, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Explosion Sound, Blue, Vector(2.849, 7.466, 82.444), 40);
+		Set Global Variable At Index(E, 2, 50);
+		Create Effect(All Players(All Teams), Light Shaft, Blue, Vector(2.849, 5.965, 82.444), 0.400, Visible To);
+		Skip If(Compare(Value In Array(Global Variable(D), 4), <, 45), 4);
+		Play Effect(All Players(All Teams), Good Pickup Effect, White, Vector(2.849, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Explosion Sound, White, Vector(2.849, 7.466, 82.444), 40);
+		Set Global Variable At Index(E, 2, 15);
+		Create Effect(All Players(All Teams), Light Shaft, White, Vector(2.849, 5.965, 82.444), 0.400, Visible To);
+		Set Global Variable At Index(C, 2, Last Created Entity);
+		Skip If(Compare(Value In Array(Global Variable(D), 5), ==, 1), 2);
+		Set Global Variable At Index(F, 2, Random Value In Array(All Heroes));
+		Create In-World Text(All Players(All Teams), Hero Icon String(Value In Array(Global Variable(F), 2)), Vector(2.849, 7.466, 82.444),
+			1.200, Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Skip If(Compare(Value In Array(Global Variable(D), 5), >, 1), 1);
+		Create In-World Text(All Players(All Teams), String("{0}: {1}", String("Credits", Null, Null, Null), Value In Array(
+			Global Variable(E), 2), Null), Vector(2.849, 7.466, 82.444), 1.200, Clip Against Surfaces, Visible To and String, White,
+			Default Visibility);
+		Set Global Variable At Index(C, 6, Last Text ID);
+	}
+}
+
+rule("| DROP 4 | / G.VARS: B,D,E,C,F /")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global Variable(B) == 1;
+	}
+
+	actions
+	{
+		Wait(3.250, Ignore Condition);
+		Skip If(Compare(Value In Array(Global Variable(D), 6), >, 2), 5);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Yellow, Vector(2.010, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Ring Explosion, Yellow, Vector(2.010, 7.466, 82.444), 3);
+		Play Effect(All Players(All Teams), Buff Impact Sound, Yellow, Vector(2.010, 7.466, 82.444), 40);
+		Set Global Variable At Index(J, 3, 500);
+		Create Effect(All Players(All Teams), Light Shaft, Yellow, Vector(2.010, 5.965, 82.444), 0.400, Visible To);
+		Skip If(Or(Compare(Value In Array(Global Variable(D), 6), <, 3), Compare(Value In Array(Global Variable(D), 6), >, 15)), 4);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Purple, Vector(2.010, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Explosion Sound, Purple, Vector(2.010, 7.466, 82.444), 40);
+		Set Global Variable At Index(J, 3, 150);
+		Create Effect(All Players(All Teams), Light Shaft, Purple, Vector(2.010, 5.965, 82.444), 0.400, Visible To);
+		Skip If(Or(Compare(Value In Array(Global Variable(D), 6), <, 16), Compare(Value In Array(Global Variable(D), 6), >, 44)), 4);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Blue, Vector(2.010, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Explosion Sound, Blue, Vector(2.010, 7.466, 82.444), 40);
+		Set Global Variable At Index(J, 3, 50);
+		Create Effect(All Players(All Teams), Light Shaft, Blue, Vector(2.010, 5.965, 82.444), 0.400, Visible To);
+		Skip If(Compare(Value In Array(Global Variable(D), 6), <, 45), 4);
+		Play Effect(All Players(All Teams), Good Pickup Effect, White, Vector(2.010, 7.466, 82.444), 1);
+		Play Effect(All Players(All Teams), Explosion Sound, White, Vector(2.010, 7.466, 82.444), 40);
+		Set Global Variable At Index(J, 3, 15);
+		Create Effect(All Players(All Teams), Light Shaft, White, Vector(2.010, 5.965, 82.444), 0.400, Visible To);
+		Set Global Variable At Index(C, 3, Last Created Entity);
+		Skip If(Compare(Value In Array(Global Variable(D), 7), ==, 1), 2);
+		Set Global Variable At Index(F, 3, Random Value In Array(All Heroes));
+		Create In-World Text(All Players(All Teams), Hero Icon String(Value In Array(Global Variable(F), 3)), Vector(2.010, 7.466, 82.444),
+			1.200, Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Skip If(Compare(Value In Array(Global Variable(D), 7), >, 1), 1);
+		Create In-World Text(All Players(All Teams), String("{0}: {1}", String("Credits", Null, Null, Null), Value In Array(
+			Global Variable(J), 3), Null), Vector(2.010, 7.466, 82.444), 1.200, Clip Against Surfaces, Visible To and String, White,
+			Default Visibility);
+		Set Global Variable At Index(C, 7, Last Text ID);
 	}
 }
 
@@ -572,6 +1278,30 @@ disabled rule("|----------------------------------------------------------------
 	}
 }
 
+rule("| EFFECTS |")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Orb, Blue, Vector(-86.488, 2.194, 92.895), 0.500, Visible To);
+		Create Effect(All Players(All Teams), Orb, Blue, Vector(-0.104, -2.497, -27.068), 0.500, Visible To);
+		Create Effect(All Players(All Teams), Orb, White, Vector(-83.422, 2.194, 93.874), 0.500, Visible To);
+		Create Effect(All Players(All Teams), Orb, White, Vector(-0.104, -2.497, -30.963), 0.500, Visible To);
+		Create In-World Text(All Players(All Teams), String("{0} {1}", String("Innocent", Null, Null, Null), String("Form", Null, Null,
+			Null), Null), Vector(-86.488, 2.194, 92.895), 1.200, Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Create In-World Text(All Players(All Teams), String("{0} {1}", String("Innocent", Null, Null, Null), String("Form", Null, Null,
+			Null), Null), Vector(-0.104, -2.497, -27.068), 1.200, Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Create In-World Text(All Players(All Teams), String("{0} {1}", String("Normal", Null, Null, Null), String("Form", Null, Null,
+			Null), Null), Vector(-83.422, 2.194, 93.874), 1.200, Clip Against Surfaces, Visible To and String, White, Default Visibility);
+		Create In-World Text(All Players(All Teams), String("{0} {1}", String("Normal", Null, Null, Null), String("Form", Null, Null,
+			Null), Null), Vector(-0.104, -2.497, -30.963), 1.200, Clip Against Surfaces, Visible To and String, White, Default Visibility);
+	}
+}
+
 disabled rule("|____________________ [PICK FORM] ____________________|")
 {
 	event
@@ -582,6 +1312,61 @@ disabled rule("|____________________ [PICK FORM] ____________________|")
 	}
 }
 
+rule("| INNOCENT | / P.VARS: G,A /")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Or(Compare(Distance Between(Event Player, Vector(-86.488, 2.194, 92.895)), <=, 1.500), Compare(Distance Between(Event Player,
+			Vector(-0.104, -2.497, -27.068)), <=, 1.500)) == True;
+	}
+
+	actions
+	{
+		Skip If(Or(Compare(Player Variable(Event Player, A), ==, 2), Compare(Player Variable(Event Player, G), >, 0)), 7);
+		Skip If(Compare(Hero Of(Event Player), ==, Hero(D.Va)), 1);
+		Kill(Event Player, Null);
+		Skip If(Compare(Hero Of(Event Player), ==, Hero(Lúcio)), 1);
+		Respawn(Event Player);
+		Set Player Variable(Event Player, A, 2);
+		Wait(0.050, Ignore Condition);
+		Play Effect(All Players(All Teams), Ring Explosion, Blue, Event Player, 5);
+	}
+}
+
+rule("| NORMAL | / P.VARS: G,A /")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Or(Compare(Distance Between(Event Player, Vector(-83.422, 2.194, 93.874)), <=, 1.500), Compare(Distance Between(Event Player,
+			Vector(-0.104, -2.497, -30.963)), <=, 1.500)) == True;
+	}
+
+	actions
+	{
+		Skip If(Or(Compare(Player Variable(Event Player, A), ==, 1), Compare(Player Variable(Event Player, G), >, 0)), 6);
+		Skip If(Compare(Hero Of(Event Player), ==, Hero(D.Va)), 1);
+		Kill(Event Player, Null);
+		Respawn(Event Player);
+		Set Player Variable(Event Player, A, 1);
+		Wait(0.050, Ignore Condition);
+		Play Effect(All Players(All Teams), Ring Explosion, White, Event Player, 5);
+	}
+}
+
 disabled rule("|____________________ [HAVE FORM] ____________________|")
 {
 	event
@@ -589,6 +1374,102 @@ disabled rule("|____________________ [HAVE FORM] ____________________|")
 		Ongoing - Each Player;
 		Team 1;
 		Slot 0;
+	}
+}
+
+rule("| INNOCENT | / P.VARS: A,J,B /")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Player Variable(Event Player, A) == 2;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Value In Array(Player Variable(Event Player, J), 2));
+		Create HUD Text(Event Player, String("Innocent", Null, Null, Null), String("Form", Null, Null, Null), Null, Left, 0, Blue, White,
+			White, Visible To and String, Default Visibility);
+		Set Player Variable At Index(Event Player, J, 2, Last Text ID);
+		Create Effect(All Players(All Teams), Good Aura, Blue, Add(Event Player, Vector(0, Add(Player Variable(Event Player, B), 0.175),
+			0)), 0.150, Visible To Position and Radius);
+		Set Player Variable At Index(Event Player, J, 4, Last Created Entity);
+		Create In-World Text(All Players(All Teams), String("Innocent", Null, Null, Null), Add(Event Player, Vector(0, Player Variable(
+			Event Player, B), 0)), 1.200, Clip Against Surfaces, Visible To Position and String, White, Default Visibility);
+		Set Player Variable At Index(Event Player, J, 5, Last Text ID);
+		Big Message(Event Player, String("{0} {1}", String("Innocent", Null, Null, Null), String("Form", Null, Null, Null), Null));
+		Set Status(Event Player, Null, Phased Out, Match Time);
+		Set Damage Dealt(Event Player, 0);
+		Set Healing Dealt(Event Player, 0);
+	}
+}
+
+rule("| NORMAL | / P.VARS: A,J /")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Player Variable(Event Player, A) == 1;
+	}
+
+	actions
+	{
+		Skip If(Compare(Player Variable(Event Player, G), >, 0), 15);
+		Destroy HUD Text(Value In Array(Player Variable(Event Player, J), 2));
+		Destroy Effect(Value In Array(Player Variable(Event Player, J), 4));
+		Destroy In-World Text(Value In Array(Player Variable(Event Player, J), 5));
+		Create HUD Text(Event Player, String("Normal", Null, Null, Null), String("Form", Null, Null, Null), Null, Left, 0, White, White,
+			White, Visible To and String, Default Visibility);
+		Set Player Variable At Index(Event Player, J, 2, Last Text ID);
+		Big Message(Event Player, String("{0} {1}", String("Normal", Null, Null, Null), String("Form", Null, Null, Null), Null));
+		Clear Status(Event Player, Phased Out);
+		Set Damage Dealt(Event Player, 100);
+		Set Healing Dealt(Event Player, 100);
+		Set Ability 1 Enabled(Event Player, True);
+		Set Ability 2 Enabled(Event Player, True);
+		Set Primary Fire Enabled(Event Player, True);
+		Allow Button(Event Player, Primary Fire);
+		Set Secondary Fire Enabled(Event Player, True);
+		Set Ultimate Ability Enabled(Event Player, True);
+	}
+}
+
+rule("| LUCIO DIED | / P.VARS: A /")
+{
+	event
+	{
+		Player Died;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Player Variable(Event Player, A) == 2;
+		Hero Of(Event Player) == Hero(Lúcio);
+	}
+
+	actions
+	{
+		Respawn(Event Player);
+		Wait(0.300, Ignore Condition);
+		Set Ability 1 Enabled(Event Player, True);
+		Wait(0.065, Ignore Condition);
+		Press Button(Event Player, Ability 1);
+		Wait(0.300, Ignore Condition);
+		Set Ability 1 Enabled(Event Player, False);
 	}
 }
 
@@ -1122,7 +2003,7 @@ rule("| OPEN MENU | / P.VARS: C,D,E,F,K /")
 	conditions
 	{
 		Is Button Held(Event Player, Interact) == True;
-		// Distance Between(Event Player, Vector(-60.100, 12.272, 11.394)) > 0.675;
+		Distance Between(Event Player, Vector(3.137, 6.266, 84.281)) > 0.675;
 		Player Variable(Event Player, D) == 0;
 	}
 
@@ -2563,7 +3444,7 @@ disabled rule("|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 	}
 }
 
-disabled rule("|-| Total Rules Usage (With Conditions Or Actions): 114 |-|")
+disabled rule("|-| Total Rules Usage (With Conditions Or Actions): 122 |-|")
 {
 	event
 	{
