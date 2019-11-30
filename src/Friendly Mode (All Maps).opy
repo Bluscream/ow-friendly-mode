@@ -1,0 +1,7 @@
+import "core/core.opy"
+import "maps/Blizzard World.opy"
+import "maps/Hanamura.opy"
+import "maps/Horizon Lunar Colony.opy"
+import "maps/King's Row.opy"
+import "maps/Paris.opy"
+import "maps/Rialty.opy"
