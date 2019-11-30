@@ -8,8 +8,8 @@
   },
   "compiler": {
     "bin": "./OWScript",
-    "input": "src/index.owpy",
-    "output": "dist/index.ows",
+    "input": "src/Friendly Mode (Debug).owpy",
+    "output": "dist/Friendly Mode (Debug).ows",
     "options": {
       "generateAdapapCredit": true,
       "generateVersionRule": true,
@@ -19,7 +19,7 @@
   "cli": {
     "git": {
       "enabled": true,
-      "useHTTPS": false
+      "useHTTPS": true
     },
     "locations": {
       "modules": "src/modules"
