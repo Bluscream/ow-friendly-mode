@@ -26,6 +26,11 @@
 @Slot 0
 """
 
+@Rule "Disable Time Limit"
+@Event global
+disableGamemodeCompletion()
+disableAnnouncer()
+
 @Rule "| INFINITE ULT USING FOR NOT MODER/LEADER | [ONLY ANA,BAPTISTE,MCCREE,ORISA] / P.VARS: G /"
 @Event eachPlayer
 if (eventPlayer.getCurrentHero() == Hero.ANA or eventPlayer.getCurrentHero() == Hero.BAPTISTE or eventPlayer.getCurrentHero() == Hero.MCCREE or eventPlayer.getCurrentHero() == Hero.ORISA) and eventPlayer.isHoldingButton(Button.ULTIMATE) and eventPlayer.player_isLeader == 0:
