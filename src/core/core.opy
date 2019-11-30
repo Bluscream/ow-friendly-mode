@@ -67,7 +67,7 @@ if eventPlayer.isHoldingButton(Button.JUMP) and not eventPlayer.hasStatusEffect(
 @Rule "/ P.VARS: A,C,F /"
 @Event eachPlayer
 if getPlayersInSlot(0, Color.TEAM_1) != eventPlayer:
-    eventPlayer.player_selectedMode = 1
+    eventPlayer.player_selectedMode = 2
     eventPlayer.player_selectedCamera = 1
     eventPlayer.player_selectedSpeed = 100
 
@@ -714,9 +714,9 @@ if eventPlayer.player_isLeader > 0:
 
 @Rule "| SHOW SERVER STATS TO LEADER |"
 @Event global
-hudHeader(getPlayersInSlot(0, Color.TEAM_1), l"Server Load: {}%".format(getServerLoad()), Position.LEFT, 4, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-hudHeader(getPlayersInSlot(0, Color.TEAM_1), l"Server Load Average: {}%".format(getAverageServerLoad()), Position.LEFT, 5, Color.YELLOW, HudReeval.VISIBILITY_AND_STRING)
-hudHeader(getPlayersInSlot(0, Color.TEAM_1), l"Server Load Peak: {}%".format(getPeakServerLoad()), Position.LEFT, 6, Color.RED, HudReeval.VISIBILITY_AND_STRING)
+hudHeader(getPlayersInSlot(0, Color.TEAM_1), l"Server Load:  {}%".format(getServerLoad()), Position.LEFT, 4, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
+hudHeader(getPlayersInSlot(0, Color.TEAM_1), l"Load Average: {}%".format(getAverageServerLoad()), Position.LEFT, 5, Color.YELLOW, HudReeval.VISIBILITY_AND_STRING)
+hudHeader(getPlayersInSlot(0, Color.TEAM_1), l"Load Peak:    {}%".format(getPeakServerLoad()), Position.LEFT, 6, Color.RED, HudReeval.VISIBILITY_AND_STRING)
 
 
 @Rule "| INVINCIBLE FOR MODER/LEADER | / P.VARS: G /"
@@ -770,11 +770,11 @@ if not eventPlayer.isHoldingButton(Button.CROUCH) and eventPlayer.player_isLeade
 @Rule "| CHANGE MODES | / P.VARS: G,H /"
 @Event eachPlayer
 if eventPlayer.isHoldingButton(Button.CROUCH) and eventPlayer.isHoldingButton(Button.ABILITY_1) and eventPlayer.player_isLeader > 0:
-    if eventPlayer.player_selectedPhase > 8:
+    if eventPlayer.player_selectedPhase > 9:
         goto lbl_0
     eventPlayer.player_selectedPhase++
     lbl_0:
-    if eventPlayer.player_selectedPhase < 9:
+    if eventPlayer.player_selectedPhase < 10:
         goto lbl_1
     eventPlayer.player_selectedPhase = 1
     lbl_1:
@@ -1143,7 +1143,7 @@ if eventPlayer.isHoldingButton(Button.CROUCH) and eventPlayer.isHoldingButton(Bu
     eventPlayer.getPlayerClosestToReticle(Team.ALL).player_isLeader = 2
     playEffect(getAllPlayers(), DynamicEffect.GOOD_PICKUP_EFFECT, Color.YELLOW, eventPlayer, 1)
     playEffect(getAllPlayers(), DynamicEffect.GOOD_PICKUP_EFFECT, Color.YELLOW, eventPlayer.getPlayerClosestToReticle(Team.ALL), 1)
-    bigMessage(getAllPlayers(), l"{} Raise {} -> Moderate, Congratulations!".format(eventPlayer, eventPlayer.getPlayerClosestToReticle(Team.ALL)))
+    bigMessage(getAllPlayers(), "{} Raise {} -> Moderate, Congratulations!".format(eventPlayer, eventPlayer.getPlayerClosestToReticle(Team.ALL)))
     lbl_0:
     if eventPlayer.getPlayerClosestToReticle(Team.ALL).player_selectedPhase == 0:
         goto lbl_1
@@ -1158,5 +1158,5 @@ if eventPlayer.isHoldingButton(Button.CROUCH) and eventPlayer.isHoldingButton(Bu
     playEffect(getAllPlayers(), DynamicEffect.BAD_PICKUP_EFFECT, Color.RED, eventPlayer, 1)
     playEffect(getAllPlayers(), DynamicEffect.BAD_PICKUP_EFFECT, Color.RED, eventPlayer.getPlayerClosestToReticle(Team.ALL), 1)
     eventPlayer.getPlayerClosestToReticle(Team.ALL).clearStatusEffect(Status.PHASED_OUT)
-    bigMessage(getAllPlayers(), l"{}: {} No Moderate!".format(eventPlayer, eventPlayer.getPlayerClosestToReticle(Team.ALL)))
+    bigMessage(getAllPlayers(), "{}: {} No Moderate!".format(eventPlayer, eventPlayer.getPlayerClosestToReticle(Team.ALL)))
     lbl_1:
