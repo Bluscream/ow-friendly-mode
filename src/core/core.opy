@@ -1,7 +1,8 @@
+#!define isCorrectMap(x) (getCurrentMap() in x)
+
 #Global variables
 
 #!declareGlobal global_a 0
-
 
 #Player variables
 
@@ -715,8 +716,8 @@ if eventPlayer.player_isLeader > 0:
 @Rule "| SHOW SERVER STATS TO LEADER |"
 @Event global
 hudHeader(getPlayersInSlot(0, Color.TEAM_1), l"Server Load:  {}%".format(getServerLoad()), Position.LEFT, 4, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-hudHeader(getPlayersInSlot(0, Color.TEAM_1), l"Load Average: {}%".format(getAverageServerLoad()), Position.LEFT, 5, Color.YELLOW, HudReeval.VISIBILITY_AND_STRING)
-hudHeader(getPlayersInSlot(0, Color.TEAM_1), l"Load Peak:    {}%".format(getPeakServerLoad()), Position.LEFT, 6, Color.RED, HudReeval.VISIBILITY_AND_STRING)
+hudHeader(getPlayersInSlot(0, Color.TEAM_1),  "Load Average: {}%".format(getAverageServerLoad()), Position.LEFT, 5, Color.YELLOW, HudReeval.VISIBILITY_AND_STRING)
+hudHeader(getPlayersInSlot(0, Color.TEAM_1),  "Load Peak:    {}%".format(getPeakServerLoad()), Position.LEFT, 6, Color.RED, HudReeval.VISIBILITY_AND_STRING)
 
 
 @Rule "| INVINCIBLE FOR MODER/LEADER | / P.VARS: G /"
