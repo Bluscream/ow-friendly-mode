@@ -1,4 +1,0 @@
-[submodule "OWScript"]
-	path = OWScript
-	url = git@github.com:adapap/OWScript.git
-	branch = master
